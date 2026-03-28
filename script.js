@@ -172,18 +172,60 @@ if (translateBtni) {}
       });
 
       async function sendDream() {
+    const dreamInput = document.getElementById("Interpret");
+    const loader = document.getElementById("loader");
+    const resultContainer = document.getElementById("result-container");
+    const resultElement = document.getElementById("result");
+    const loaderEmoji = loader.querySelector('span');
 
-        const dream = document.getElementById("interpret").value;
+    if (!dreamInput || !loader || !resultContainer || !resultElement) return;
     
-        const response = await fetch("https://lucid-lens.onrender.com/response", {
+    const dream = dreamInput.value;
+    if (!dream.trim()) return;
+
+    // Show loader, hide result
+    loader.classList.remove("hidden");
+    resultContainer.classList.add("hidden");
+    
+    // Randomize loader emoji
+    const emojis = ["🛸", "🧠", "✨", "🔮", "🌌", "🌙"];
+    let emojiIndex = 0;
+    const emojiInterval = setInterval(() => {
+        loaderEmoji.innerText = emojis[emojiIndex];
+        loaderEmoji.classList.toggle('spinning');
+        emojiIndex = (emojiIndex + 1) % emojis.length;
+    }, 500);
+
+    try {
+        const response = await fetch("http://localhost:4000/api/ai/response", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ dream })
+            body: JSON.stringify({ prompt: dream })
         });
-        console.log(response)
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         const data = await response.json();
-    
-        document.getElementById("result").innerText = data.interpretation;
+        
+        clearInterval(emojiInterval);
+        loader.classList.add("hidden");
+        
+        resultElement.innerText = data.response || "No interpretation received.";
+        resultContainer.classList.remove("hidden");
+        
+        // Scroll to result
+        resultContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    } catch (error) {
+        console.error("Error sending dream:", error);
+        clearInterval(emojiInterval);
+        loader.classList.add("hidden");
+        
+        resultElement.innerText = "❌ Sorry, there was an error interpreting your dream. Please try again.";
+        resultContainer.classList.remove("hidden");
     }
+}
