@@ -149,11 +149,19 @@ body {
     gap: 2rem;
 }
 
-.space-y-2 > * + * {
+.space-y-2>*+* {
     margin-top: 0.5rem;
 }
 
-.space-y-8 > * + * {
+.space-y-4>*+* {
+    margin-top: 1rem;
+}
+
+.space-y-6>*+* {
+    margin-top: 1.5rem;
+}
+
+.space-y-8>*+* {
     margin-top: 2rem;
 }
 
@@ -387,7 +395,7 @@ nav .text-gray-300:hover {
 
     .nav-links {
         display: flex;
-        flex-direction:row;
+        flex-direction: row;
         background: black;
         top: 60px;
         left: 0;
@@ -397,7 +405,7 @@ nav .text-gray-300:hover {
 
     .nav-links.active {
         display: flex;
-        
+
     }
 
     .translate-btn {
@@ -409,6 +417,7 @@ nav .text-gray-300:hover {
         cursor: pointer;
     }
 }
+
 /* Hero Section */
 .h-screen {
     height: 100vh;
@@ -451,9 +460,11 @@ nav .text-gray-300:hover {
     0% {
         transform: translateY(0px);
     }
+
     50% {
         transform: translateY(-20px);
     }
+
     100% {
         transform: translateY(0px);
     }
@@ -474,6 +485,7 @@ nav .text-gray-300:hover {
 
 .border {
     border: 1px solid;
+    padding: 1rem;
 }
 
 .border-white\/20 {
@@ -545,8 +557,9 @@ nav .text-gray-300:hover {
 }
 
 /* Spacing */
-.space-x-10 > * + * {
+.space-x-10>*+* {
     margin-left: 2.5rem;
+    padding-bottom: 2.5rem;
 }
 
 /* Flex direction */
@@ -616,7 +629,7 @@ h1 {
     height: 100vh;
 }
 
-.dream{
+.dream {
     height: 500px;
     width: 600px;
     font-size: 10px;
@@ -669,7 +682,7 @@ textarea {
 textarea:focus {
     outline: none;
     border-color: #fff;
-    box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 /* Button */
@@ -698,22 +711,22 @@ textarea:focus {
     background-color: #000;
     width: 100%;
     text-align: center;
-  }
-  
-  .mobile-menu.active {
-    display: flex;
-  }
+}
 
-  .a{
+.mobile-menu.active {
+    display: flex;
+}
+
+.a {
     padding-left: 50px;
     padding-right: 50px;
-  }
+}
 
-  .px-6{
+.px-6 {
     padding: 10px;
-  }
+}
 
-  .navbar {
+.navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -767,6 +780,7 @@ textarea:focus {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -782,9 +796,12 @@ textarea:focus {
 }
 
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 1;
     }
+
     50% {
         opacity: .5;
     }
@@ -804,6 +821,11 @@ textarea:focus {
 }
 
 @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
