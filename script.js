@@ -197,7 +197,7 @@ if (translateBtni) {}
     }, 500);
 
     try {
-        const response = await fetch("http://localhost:4000/api/ai/response", {
+        const response = await fetch("https://lucid-lens.onrender.com/api/ai/response", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
